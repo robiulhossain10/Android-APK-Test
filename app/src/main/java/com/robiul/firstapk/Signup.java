@@ -1,6 +1,8 @@
 package com.robiul.firstapk;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Signup extends AppCompatActivity {
 
+TextView btnlogin;
+
 
 
 
@@ -18,6 +22,15 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
+
+
+        btnlogin = findViewById(R.id.tvLogin);
+        btnlogin.setOnClickListener(v -> {
+            Intent intent = new Intent(Signup.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
