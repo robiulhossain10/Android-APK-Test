@@ -19,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.robiul.firstapk.products.ProductList;
+import com.robiul.firstapk.products.ProductsAdd;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
 
     Button btnSing;
+
+    Button prodadd;
+    Button prodlist;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,10 +48,25 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.floatingActionButton);
         btnSing = findViewById(R.id.btnSignup);
 
+        prodadd = findViewById(R.id.productadd);
+        prodlist = findViewById(R.id.productlist);
+
         btnSing.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Signup.class);
             startActivity(intent);
         });
+
+
+        prodadd.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProductsAdd.class);
+            startActivity(intent);
+        });
+
+        prodlist.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProductList.class);
+            startActivity(intent);
+        });
+
 
         fab.setOnClickListener(View -> {
             Toast.makeText(MainActivity.this, "Floating Action Button", Toast.LENGTH_SHORT).show();
