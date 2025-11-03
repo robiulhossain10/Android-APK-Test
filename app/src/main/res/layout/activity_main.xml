@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="367dp"
-        android:layout_height="47dp"
+        android:layout_width="268dp"
+        android:layout_height="52dp"
         android:backgroundTint="@color/white"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -22,23 +22,24 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.356" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="325dp"
-        android:layout_height="45dp"
+        android:layout_width="264dp"
+        android:layout_height="43dp"
         android:backgroundTint="#03A9F4"
         android:text="Login"
         android:textColorLink="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <TextView
         android:id="@+id/textView3"
@@ -51,14 +52,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <EditText
         android:id="@+id/etUsername"
-        android:layout_width="371dp"
-        android:layout_height="46dp"
+        android:layout_width="267dp"
+        android:layout_height="54dp"
         android:backgroundTint="@color/design_default_color_background"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:ems="10"
@@ -69,7 +71,7 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.262" />
@@ -92,39 +94,40 @@
 
     <Button
         android:id="@+id/btnSignup"
-        android:layout_width="317dp"
-        android:layout_height="39dp"
+        android:layout_width="264dp"
+        android:layout_height="42dp"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.516" />
 
     <Button
         android:id="@+id/productadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFC107"
+        android:layout_width="264dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Product Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintVertical_bias="0.575" />
 
     <Button
         android:id="@+id/productlist"
-        android:layout_width="127dp"
-        android:layout_height="44dp"
+        android:layout_width="265dp"
+        android:layout_height="39dp"
         android:backgroundTint="#E91E63"
         android:text="Product List"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintHorizontal_bias="0.595"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.605" />
+        app:layout_constraintVertical_bias="0.632" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
