@@ -7,6 +7,8 @@ public class Product {
     private Double price;
     private Integer quantity;
 
+    private String imageUri;
+
     public int getId() {
         return id;
     }
@@ -47,19 +49,29 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Product(int id, String name, String email, Double price, Integer quantity) {
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    public Product(String name, String email, Double price, Integer quantity, String imageUri) {
+        this.name = name;
+        this.email = email;
+        this.price = price;
+        this.quantity = quantity;
+        this.imageUri = imageUri;
+    }
+
+    public Product(int id, String name, String email, Double price, Integer quantity, String imageUri) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    public Product(String name, String email, Double price, Integer quantity) {
-        this.name = name;
-        this.email = email;
-        this.price = price;
-        this.quantity = quantity;
+        this.imageUri = imageUri;
     }
 
     public Product() {

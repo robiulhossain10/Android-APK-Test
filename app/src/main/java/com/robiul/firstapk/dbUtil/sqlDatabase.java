@@ -19,6 +19,7 @@ public class sqlDatabase extends SQLiteOpenHelper {
 
 
 
+
     public sqlDatabase(@Nullable Context context) {
         super(context, NAME, null, 1);
     }
@@ -26,14 +27,16 @@ public class sqlDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TBL_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COL_NAME + " TEXT, " + COL_EMAIL + " TEXT, " + COL_PRICE + " REAL, " + COL_QUANTITY + " INTEGER)";
+                + COL_NAME + " TEXT, " + COL_EMAIL + " TEXT, " + COL_PRICE + " REAL, " + COL_QUANTITY + " INTEGER, IMAGE_URI TEXT)";
 
         db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+//        if (oldVersion < 2){
+//            db.execSQL("ALTER TABLE " + TBL_NAME + " ADD COLUMN IMAGE_URI TEXT");
+//        }
     }
 
 
