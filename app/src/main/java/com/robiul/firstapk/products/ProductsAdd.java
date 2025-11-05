@@ -120,9 +120,11 @@ public class ProductsAdd extends AppCompatActivity {
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() !=
-                            null && result.getData().getData() != null) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null && result.getData().getData() != null) {
                         selectedImageUri = result.getData().getData();
+
+                        getContentResolver().takePersistableUriPermission(selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
                         imgView.setImageURI(selectedImageUri);
                     } else if (result.getResultCode() == RESULT_OK && cameraImageUri != null) {
                         selectedImageUri = cameraImageUri;
@@ -139,6 +141,28 @@ public class ProductsAdd extends AppCompatActivity {
         imgView.setOnClickListener(v->
                 showImageSourceDialog()
         );
+
+        // Check if editing
+        int productId = getIntent().getIntExtra("PRODUCT_ID", -1);
+        System.out.println("product ID :---------------"+productId);
+        if (productId != -1) {
+
+            product = productDao.getProductById(productId);
+            System.out.println(product);
+            if (product != null) {
+                System.out.println(product);
+                name.setText(product.getName());
+                email.setText(product.getEmail());
+                price.setText(String.valueOf(product.getPrice()));
+                quantity.setText(String.valueOf(product.getQuantity()));
+                if (product.getImageUri() != null) {
+                    selectedImageUri = Uri.parse(product.getImageUri());
+                    imgView.setImageURI(selectedImageUri);
+                }
+            }
+
+
+        }
 
 
     }
@@ -158,7 +182,9 @@ public class ProductsAdd extends AppCompatActivity {
                         }
                     } else {
                         // Gallery
-                        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+                        Intent galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        galleryIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        galleryIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                         galleryIntent.setType("image/*");
                         imagePickerLauncher.launch(galleryIntent);
                     }

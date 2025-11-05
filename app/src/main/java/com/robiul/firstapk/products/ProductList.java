@@ -1,7 +1,9 @@
 package com.robiul.firstapk.products;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +34,16 @@ public class ProductList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product_list);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("RobiulApps", MODE_PRIVATE);
+
+        String username = sharedPreferences.getString("username", "Guest");
+        String password = sharedPreferences.getString("password", null);
+        boolean loggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        Toast.makeText(this,"User: " + username + " , Password: " + password, Toast.LENGTH_SHORT).show();
+
 
 
         recyclerView = findViewById(R.id.recyclerView);

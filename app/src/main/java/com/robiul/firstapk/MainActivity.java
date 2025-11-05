@@ -3,6 +3,9 @@ package com.robiul.firstapk;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.robiul.firstapk.dbUtil.BatteryReciever;
+import com.robiul.firstapk.dbUtil.MyService;
+import com.robiul.firstapk.dbUtil.NetworkChangeReceiver;
 import com.robiul.firstapk.products.ProductList;
 import com.robiul.firstapk.products.ProductsAdd;
 
@@ -35,12 +41,35 @@ public class MainActivity extends AppCompatActivity {
     Button prodadd;
     Button prodlist;
 
+    NetworkChangeReceiver receiver = new NetworkChangeReceiver();
+    BatteryReciever batteryReciever = new BatteryReciever();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        //service
+        Intent intentservice = new Intent(this, MyService.class);
+        startService(intentservice);
+
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
+
+        IntentFilter bfilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(batteryReciever, bfilter);
+
+        //In Your activity or Fragment
+        SharedPreferences sharedPreferences = getSharedPreferences("RobiulApps", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         etUser = findViewById(R.id.etUsername);
         etPass = findViewById(R.id.etPassword);
@@ -110,8 +139,24 @@ public class MainActivity extends AppCompatActivity {
                     toast.setView(layout);
                     toast.show();
                 }
+
+
+
+                editor.putString("username",username);
+                editor.putString("password",password );
+                editor.putBoolean("isLoggedIn", true);
+                editor.apply();
+
+//                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, ProductList.class);
+                startActivity(intent);
             }
         });
+
+
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

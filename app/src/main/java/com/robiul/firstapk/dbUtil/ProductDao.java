@@ -65,14 +65,18 @@ public class ProductDao {
         Cursor cursor = db.rawQuery("SELECT * FROM " + sqlDatabase.TBL_NAME + " WHERE ID = ?", new String[]{String.valueOf(id)});
         Product p = null;
         if (cursor.moveToFirst()) {
-            p = new Product(
-                    cursor.getInt(cursor.getColumnIndexOrThrow("ID")),
-                    cursor.getString(cursor.getColumnIndexOrThrow(sqlDatabase.COL_NAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(sqlDatabase.COL_EMAIL)),
-                    cursor.getDouble(cursor.getColumnIndexOrThrow(sqlDatabase.COL_PRICE)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(sqlDatabase.COL_QUANTITY)),
-                    cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URI"))
-            );
+            do {
+                 p = new Product(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("ID")),
+                        cursor.getString(cursor.getColumnIndexOrThrow(sqlDatabase.COL_NAME)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(sqlDatabase.COL_EMAIL)),
+                        cursor.getDouble(cursor.getColumnIndexOrThrow(sqlDatabase.COL_PRICE)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(sqlDatabase.COL_QUANTITY)),
+                        cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URI"))
+                );
+
+
+            } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
